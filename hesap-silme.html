@@ -1,0 +1,132 @@
+<!doctype html>
+<!--
+  RAPTOR WASH — Hesap silme sayfası (19 Eylül 2026, Play öncesi).
+
+  Google Play, hesap açılan uygulamalardan uygulama İÇİNDEKİ silme yoluna ek
+  olarak herkese açık bir WEB ADRESİ istiyor (Play Console > Uygulama içeriği >
+  Veri güvenliği > "Hesap silme URL'si"). Sayfa şunları açıkça söylemeli:
+  uygulamanın/geliştiricinin adı, silme adımları, silinen ve saklanan veriler
+  ve saklama süresi.
+
+  İçerik sunucunun GERÇEKTEN yaptığına göre yazıldı (göç 13 `delete_account`,
+  göç 21 kara liste, `yonetim` edge function giriş hesabını siler).
+
+  Başvuru adresi hukuk metinleriyle aynı: yapaylab@gmail.com. Tek dosya, dış
+  bağımlılık yok; herhangi bir siteye (ör. YapayLab sitesi) olduğu gibi konabilir.
+-->
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raptor Wash — Hesap silme</title>
+<meta name="description" content="Raptor Wash hesabını silme adımları, silinen ve saklanan veriler.">
+<style>
+  :root { --zemin: #F6F8FB; --kart: #FFFFFF; --metin: #0B0E12; --soluk: #4A5563; --mavi: #1A5C96; --yesil: #A8C030; --cizgi: #E2E8F0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--zemin); color: var(--metin); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .marka { font-weight: 800; letter-spacing: .04em; font-size: 20px; }
+  .marka b { color: var(--yesil); background: var(--metin); padding: 2px 8px; border-radius: 6px; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 16px 0 8px; }
+  h2 { font-size: 19px; margin: 28px 0 8px; color: var(--mavi); }
+  .kart { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 14px; padding: 16px 18px; margin: 12px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  .soluk { color: var(--soluk); font-size: 14px; }
+  .etiket { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #EAF2FB; color: var(--mavi); }
+  hr { border: 0; border-top: 1px solid var(--cizgi); margin: 40px 0; }
+  a { color: var(--mavi); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="marka"><b>RAPTOR</b> WASH</div>
+  </header>
+  <p class="soluk">Mobil araç yıkama uygulaması · Geliştirici: YapayLab · Paket: com.yapaylab.mobilyikama</p>
+
+  <h1>Hesabını silmek</h1>
+  <p>Raptor Wash hesabını istediğin zaman silebilirsin. Silme işlemi geri alınamaz.</p>
+
+  <h2>1. Uygulamadan sil (önerilen, hemen gerçekleşir)</h2>
+  <div class="kart">
+    <ol>
+      <li>Raptor Wash uygulamasını aç ve hesabınla giriş yap.</li>
+      <li>Alttaki <strong>Profil</strong> sekmesine gir.</li>
+      <li>En alttaki <strong>Hesabımı sil</strong> düğmesine bas.</li>
+      <li>Açılan pencerede tekrar <strong>Hesabımı sil</strong> diyerek onayla.</li>
+    </ol>
+    <p class="soluk">Hesabın ve giriş bilgilerin aynı anda silinir.</p>
+  </div>
+
+  <h2>2. Uygulamaya giremiyorsan</h2>
+  <div class="kart">
+    <p>Kayıtlı telefon numaranla birlikte <strong>yapaylab@gmail.com</strong> adresine “hesabımı silin” yazman yeterli.
+       Numaranın sana ait olduğunu doğruladıktan sonra hesabını en geç <strong>30 gün</strong> içinde sileriz ve sana haber veririz.</p>
+    <p class="soluk">Uygulama telefonunda yüklüyse, giriş yapmadan da <strong>Profil › Destek</strong> bölümünden aynı talebi bırakabilirsin.</p>
+  </div>
+
+  <h2>Silinen veriler</h2>
+  <div class="kart">
+    <ul>
+      <li>Adın, telefon numaran, şifren ve giriş hesabın</li>
+      <li>Profil fotoğrafın</li>
+      <li>Araçların (plakalar dahil) ve adreslerin (konum dahil)</li>
+      <li>Favorilerin, bildirimlerin ve bildirim tercihlerin</li>
+      <li>Destek taleplerin</li>
+      <li>Onay kayıtların (sözleşme, izinler)</li>
+      <li>İş fotoğrafları (öncesi / sonrası kareleri)</li>
+      <li>Yıkamacıysan: çalışma takvimin, paketlerin ve fiyatların, hizmet bölgelerin, vitrin fotoğrafların ve videoların, başvuru fotoğrafların</li>
+      <li>Telefonunun bildirim adresi (uzak bildirim için)</li>
+    </ul>
+    <p class="soluk">Süren randevuların iptal edilir ve karşı tarafa bildirim gider.</p>
+  </div>
+
+  <h2>Saklanan veriler ve süreleri</h2>
+  <div class="kart">
+    <ul>
+      <li><span class="etiket">Anonim</span> Geçmiş işlerin <strong>kimliksiz</strong> kaydı: tarih, tutar, il/ilçe ve plakasız araç türü. Adın “silinmiş kullanıcı” olarak değiştirilir, açık adres ve notlar silinir. İstatistik için süresiz tutulur, sana bağlanamaz.</li>
+      <li><span class="etiket">6 ay</span> Yıkamacıysan: son işlerindeki müşteriler, iş kapandıktan sonra 6 ay boyunca seninle iletişim kurabilmek için telefon numarana erişebilir (hukuki talep hakkı). Süre dolunca numara okunamaz.</li>
+      <li><span class="etiket">Kara liste</span> Hesap <strong>askıdayken</strong> silinirse, aynı numarayla yeniden kayıt açılmasını önlemek için numaranın <strong>tek yönlü özeti</strong> (numaranın kendisi değil) <strong>askı bitene kadar</strong> saklanır, sonra silinir.</li>
+      <li><span class="etiket">Kayıt</span> Silme işleminin yapıldığı, rolünle birlikte (müşteri / yıkamacı) denetim kaydına yazılır; adın ve numaran yazılmaz.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <h1 lang="en">Deleting your account</h1>
+  <div lang="en">
+    <p>You can delete your Raptor Wash account at any time. Deletion cannot be undone.</p>
+    <h2>1. In the app (recommended, immediate)</h2>
+    <div class="kart">
+      <ol>
+        <li>Open the Raptor Wash app and sign in.</li>
+        <li>Go to the <strong>Profile</strong> tab.</li>
+        <li>Tap <strong>Delete my account</strong> at the bottom.</li>
+        <li>Confirm by tapping <strong>Delete my account</strong> again.</li>
+      </ol>
+    </div>
+    <h2>2. If you cannot access the app</h2>
+    <div class="kart">
+      <p>Email <strong>yapaylab@gmail.com</strong> with your registered phone number and “delete my account”. After verifying the number is yours, we delete the account within <strong>30 days</strong> and let you know.</p>
+    </div>
+    <h2>Data that is deleted</h2>
+    <div class="kart">
+      <p>Your name, phone number, password and sign-in account; profile photo; vehicles (including plates) and addresses (including location); favorites, notifications and preferences; support requests; consent records; job photos; for washers: calendar, packages and prices, service areas, showcase photos and videos, application photos; your device’s notification address. Ongoing bookings are cancelled and the other party is notified.</p>
+    </div>
+    <h2>Data that is kept</h2>
+    <div class="kart">
+      <ul>
+        <li><strong>Anonymous</strong> past job records (date, amount, district, vehicle type without plate), kept for statistics and not linkable to you.</li>
+        <li><strong>6 months:</strong> if you are a washer, customers of your recent jobs can still reach your phone number for 6 months after the job closed (legal claims).</li>
+        <li>If the account is deleted <strong>while suspended</strong>, a one-way hash of the phone number (not the number) is kept until the suspension ends, to prevent re-registration, and then deleted.</li>
+        <li>An audit entry that an account (customer / washer) was deleted, without name or number.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="soluk" style="margin-top:32px">Son güncelleme / Last updated: 21.09.2026</p>
+</main>
+</body>
+</html>
